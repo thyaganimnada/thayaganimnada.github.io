@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thayaga Nimnada | Professional Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="nimnada.jpg">
+
+    <style>
+        /* Global Styles - Dark Theme */
+        :root {
+            --primary: #6366f1; /* Indigo */
+            --secondary: #a855f7; /* Purple */
+            --dark: #0f172a; /* Dark blue */
+            --light: #f8fafc; /* Light gray */
+            --accent: #f59e0b; /* Amber */
+            --text: #e2e8f0; /* Light text */
+            --card-bg: #1e293b; /* Card background */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3 {
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.8rem; }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            background-color: rgba(15, 23, 42, 0.98);
+            padding: 10px 0;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: var(--text);
+        }
+        
+        /* Hero Section with Circular Image */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .hero-content h1 {
+            margin-bottom: 15px;
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, white, var(--text));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-content p {
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 10%;
+            top: 200px;
+            transform: translateY(50%);
+            width: 350px;
+            height: 350px;
+            opacity: 0;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 8px solid rgba(99, 102, 241, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Animated Professional Text */
+        .professional-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .professional-text::after {
+            content: '|';
+            position: absolute;
+            right: -10px;
+            animation: blink 0.7s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* About Section */
+        #about {
+            background-color: var(--dark);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            border: 5px solid rgba(99, 102, 241, 0.2);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text {
+            flex: 1;
+            opacity: 0;
+        }
+        
+        .skills {
+            margin-top: 30px;
+        }
+        
+        .skill-item {
+            margin-bottom: 20px;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .skill-bar {
+            height: 10px;
+            background-color: #334155;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0;
+            transition: width 1.5s ease;
+        }
+        
+        /* Services Section */
+        #services {
+            background-color: #0f172a;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            border-top: 4px solid var(--primary);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background-color: #1e293b;
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 250px;
+            opacity: 0;
+            transform: scale(0.95);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(165, 85, 247, 0.9));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+        
+        /* Contact Section */
+        #contact {
+            background-color: var(--dark);
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            opacity: 0;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-icon {
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .contact-form {
+            flex: 1;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #334155;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background-color: #1e293b;
+            color: var(--text);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark), #1e293b);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .footer-content {
+            opacity: 1;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes float {
+             0%, 100% {
+            transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        
+        .animate {
+            animation-fill-mode: both;
+        }
+        
+        .fadeInUp {
+            animation-name: fadeInUp;
+            animation-duration: 1s;
+        }
+        
+        .fadeInLeft {
+            animation-name: fadeInLeft;
+            animation-duration: 1s;
+        }
+        
+        .fadeInRight {
+            animation-name: fadeInRight;
+            animation-duration: 1s;
+        }
+        
+        .fadeIn {
+            animation-name: fadeIn;
+            animation-duration: 1s;
+        }
+        
+        .hero-image.animate {
+            animation: fadeInRight 1s ease forwards, float 6s ease-in-out infinite;
+        }
+
+
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-image {
+                width: 300px;
+                height: 300px;
+                right: 5%;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--dark);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hero-content {
+                text-align: center;
+                margin: 0 auto;
+            }
+            
+            .hero-image {
+                position: relative;
+                right: auto;
+                width: 250px;
+                height: 250px;
+                margin: 0 auto;
+                margin-top: 50px;
+                top: 0;
+            }
+            
+            #hero {
+                height: auto;
+                padding: 120px 0 80px;
+                flex-direction: column-reverse;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+            }
+            
+            .hero-image {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Thayaga<span> Nimnada</span></a>
+                <ul class="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section with Circular Image -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hi, I'm Thayaga Nimnada</h1>
+                <div class="professional-text">Web Designer</div>
+                <p>I bring ideas to life with creative, impactful designs that help businesses grow and make a lasting impression</p>
+                <a href="#contact" class="btn">Get In Touch</a>
+            </div>
+            <div class="hero-image">
+                <img src="nimnada.jpg" alt="Thayaga Nimnada" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="about.jpg" alt="About Thayaga Nimnada">
+                </div>
+                <div class="about-text">
+  <h3>Who am I?</h3>
+
+            <p>
+                I'm a passionate Software Developer from Sri Lanka,
+                currently pursuing a Higher Diploma in Computing and
+                Software Engineering at ICBT Campus.
+            </p>
+
+            <p>
+                I enjoy designing and developing practical software
+                solutions, including Android applications, web applications,
+                and desktop-based systems. My technical experience includes
+                Kotlin, Java, PHP, MySQL, JavaScript, and modern development tools.
+            </p>
+
+            <p>
+                I have worked on several academic and personal projects,
+                including MediCare LK, a healthcare mobile application;
+                SwiftDrive, a web-based car rental management system;
+                and GadgetGalaxy, a Java-based desktop application developed
+                using Object-Oriented Programming principles.
+            </p>
+
+            <p>
+                I have also developed and published Key Touch, an Android
+                application available on Google Play under the N.Dev brand.
+                This project reflects my interest in building useful mobile
+                applications and improving everyday digital experiences.
+            </p>
+
+            <p>
+                My main interests include Android development, web technologies,
+                database management, and software engineering. I am always
+                eager to learn new technologies, improve my programming skills,
+                and create innovative solutions to real-world problems.
+            </p>
+
+
+                    <div class="skills">
+                        <h3>My Skills</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>web Development</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Mobile App Development</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Softwear Development</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Graphic Designer</span>
+                                <span>60%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">My Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Custom website development tailored to your specific needs using the latest technologies and best practices.</p>
+                </div>
+                <div class="service-card delay-1">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Beautiful, intuitive interfaces designed with user experience as the top priority.</p>
+                </div>
+                <div class="service-card delay-2">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Application Development</h3>
+                    <p>I develop creative, impactful applications that bring your ideas to life through intuitive design, seamless functionality, and powerful technology.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+
+<section id="portfolio">
+    <div class="container">
+        <h2 class="section-title">My Work</h2>
+
+        <div class="portfolio-grid">
+
+            <!-- Key Touch -->
+            <div class="portfolio-item">
+                <img src="keytouch.png"
+                     alt="Key Touch Android Application"
+                     class="portfolio-img">
+
+                <div class="portfolio-overlay">
+                    <h3>Key Touch</h3>
+                    <p>
+                        A feature-rich Android keyboard application developed
+                        using Kotlin. Supports Sinhala and Japanese typing,
+                        keyboard customization, productivity tools, and
+                        privacy-focused features. Published on Google Play
+                        under the N.Dev brand.
+                    </p>
+                    <a href="https://play.google.com/store/apps/details?id=com.ndev.keytouch&pli=1"
+                       class="btn"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        View on Google Play
+                    </a>
+                </div>
+            </div>
+
+            <!-- GadgetGalaxy -->
+            <div class="portfolio-item delay-1">
+                <img src="softwearProjectimg.png"
+                     alt="GadgetGalaxy Java Desktop Application"
+                     class="portfolio-img">
+
+                <div class="portfolio-overlay">
+                    <h3>GadgetGalaxy</h3>
+                    <p>
+                        A Java-based gadget store management and POS desktop
+                        application developed as an Object-Oriented Programming
+                        academic project. Built using Java Swing (JFrame),
+                        JDBC, and Microsoft SQL Server.
+                    </p>
+                    <a href="https://github.com/thayaganimnada-ai/softwear-project.git"
+                       class="btn"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        View Source Code
+                    </a>
+                </div>
+            </div>
+
+            <!-- MediCare LK -->
+            <div class="portfolio-item delay-2">
+                <img src="medicare.png"
+                     alt="MediCare LK Healthcare Mobile Application"
+                     class="portfolio-img">
+
+                <div class="portfolio-overlay">
+                    <h3>MediCare LK</h3>
+                    <p>
+                        An Android-based healthcare mobile application
+                        developed as an academic project for the Mobile
+                        Application Development module at ICBT Campus.
+                        Designed to provide a convenient and user-friendly
+                        digital healthcare experience.
+                    </p>
+                    <a href="https://github.com/thyaganimnada/medicare-lk.git"
+                       class="btn"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        View Source Code
+                    </a>
+                </div>
+            </div>
+
+            <!-- SwiftDrive -->
+            <div class="portfolio-item delay-3">
+                <img src="shiftdrive.png"
+                     alt="SwiftDrive Car Rental Web Application"
+                     class="portfolio-img">
+
+                <div class="portfolio-overlay">
+                    <h3>SwiftDrive</h3>
+                    <p>
+                        A web-based car rental management system developed
+                        using PHP, MySQL, HTML, CSS, JavaScript, and Bootstrap 5.
+                        Includes vehicle browsing, booking functionality,
+                        and role-based access for customers, staff, and admins.
+                    </p>
+                    <a href="https://github.com/thyaganimnada/swiftdrive-car-rental-system.git"
+                       class="btn"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        View Source Code
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <p>Mirissa, Matara, Sri Lanka</p>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <p>thayaganimnada93@gmail.com</p>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <p>+94 72 055 3853</p>
+                        </div>
+                    </div>
+                    <h3>Follow Me</h3>
+                    <div class="social-links">
+    <a href="https://web.facebook.com/thayga.nimnada" target="_blank" class="social-link">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <a href="https://wa.me/94720553853" target="_blank" class="social-link">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <a href="https://www.instagram.com/nimn.ada/" target="_blank" class="social-link">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/@_nimnada" target="_blank" class="social-link">
+        <i class="fab fa-tiktok"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/thayaga-nimnada-aba456385/" target="_blank" rel="noopener noreferrer" class="social-link">
+        <i class="fab fa-linkedin-in"></i>
+    </a>
+</div>
+
+                </div>
+                <div class="contact-form">
+                    <form id="form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Thayaga Nimnada. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Sticky Header
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Typewriter effect for professional text
+        const professionalText = document.querySelector('.professional-text');
+        const professions = ["Graphic Designer", "softwear Developer", "Mobile application Developer", "Video Editor"];
+        let currentProfession = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function typeWriter() {
+            const currentText = professions[currentProfession];
+            
+            if (isDeleting) {
+                professionalText.textContent = currentText.substring(0, charIndex - 1) + '|';
+                charIndex--;
+            } else {
+                professionalText.textContent = currentText.substring(0, charIndex + 1) + '|';
+                charIndex++;
+            }
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                setTimeout(typeWriter, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                currentProfession = (currentProfession + 1) % professions.length;
+                setTimeout(typeWriter, 500);
+            } else {
+                const speed = isDeleting ? 100 : 150;
+                setTimeout(typeWriter, speed);
+            }
+        }
+        
+        // Scroll animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.hero-content, .hero-image, .about-image, .about-text, .service-card, .portfolio-item, .contact-info, .contact-form, .footer-content');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate');
+                    
+                    if (element.classList.contains('hero-content') || 
+                        element.classList.contains('service-card') || 
+                        element.classList.contains('contact-form')) {
+                        element.classList.add('fadeInUp');
+                    } else if (element.classList.contains('hero-image') || 
+                               element.classList.contains('about-text')) {
+                        element.classList.add('fadeInRight');
+                    } else if (element.classList.contains('about-image')) {
+                        element.classList.add('fadeInLeft');
+                    } else {
+                        element.classList.add('fadeIn');
+                    }
+                }
+            });
+            
+            // Animate skill bars
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                if (bar.parentElement.getBoundingClientRect().top < window.innerHeight) {
+                    bar.style.width = width + '%';
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', () => {
+            animateOnScroll();
+            setTimeout(typeWriter, 1000);
+        });
+        
+        // Form submission
+        form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch('contact.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(result => {
+            if (result.trim() === "success") {
+                alert("Thank you for your message! I will get back to you soon.");
+                form.reset();
+            } else {
+                alert("Oops! Something went wrong. Try again later.");
+            }
+        })
+        .catch(error => {
+            alert("Network error. Please check your connection.");
+        });
+    });
+
+    </script>
+</body>
+</html>
